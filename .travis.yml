@@ -1,0 +1,16 @@
+language: node_js
+node_js:
+  - 13
+
+services:
+  - docker
+
+script:
+  - npm run build
+  - docker --version # print the version for logging
+  - docker build -t udagram-api-user --build-arg POSTGRES_USERNAME=$POSTGRES_USERNAME --build-arg POSTGRES_PASSWORD=$POSTGRES_PASSWORD --build-arg POSTGRES_HOST=$POSTGRES_HOST --build-arg POSTGRES_DB=$POSTGRES_DB --build-arg AWS_BUCKET=$AWS_BUCKET --build-arg AWS_REGION=$AWS_REGION --build-arg AWS_PROFILE=$AWS_PROFILE --build-arg JWT_SECRET=$JWT_SECRET --build-arg URL=$URL --build-arg USER_PORT=$USER_PORT .
+  - docker tag udagram-api-user kbessetteudacity/udagram-api-user:latest
+
+after_success:
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+  - docker push kbessetteudacity/udagram-api-user
