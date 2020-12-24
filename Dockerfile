@@ -35,6 +35,7 @@ ENV JWT_SECRET=${JWT_SECRET}
 ENV URL=${URL}
 ENV USER_PORT=${USER_PORT}
 
+RUN npm ci
 
 # Copy app source
 COPY . .
