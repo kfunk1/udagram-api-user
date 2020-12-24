@@ -18,3 +18,10 @@ spec:
         - name: backend-user
           image: kbessetteudacity/udagram-api-user
           imagePullPolicy: Always
+          resources:
+            requests:
+              memory: "64Mi"
+              cpu: "250m"
+            limits:
+              memory: "1024Mi"
+              cpu: "500m"
