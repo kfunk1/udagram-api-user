@@ -40,7 +40,7 @@ ENV USER_PORT=${USER_PORT}
 COPY . .
 
 # Bind the port that the image will run on
-EXPOSE 8101
+EXPOSE 8080
 
 # Define the Docker image's behavior at runtime
 CMD ["npm", "run", "prod"]
